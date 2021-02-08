@@ -7,7 +7,7 @@ import { toArray } from 'rxjs/operators';
 import { UserData } from 'src/app/userData';
 import { FormService } from 'src/app/service/form.service';
 import { UserNotationPipe } from 'src/app/shared/pipes/user-notation.pipe';
-import { Pipe, PipeTransform } from '@angular/core';
+import { HoverDirective } from 'src/app/shared/directives/hover.directive';
 
 const formServiceMock = {
 
@@ -15,11 +15,15 @@ const formServiceMock = {
   setDados: jest.fn(user => !!user)
 }
 
-@Pipe({
-  name: "userNotation"
-})
-class mockPipe implements PipeTransform{
+class NotaionPipe{
+
   transform(){}
+}
+
+const hoverDirective = {
+
+  opacityOn: jest.fn().mockReturnValue('1.1'),
+  opacityOff: jest.fn().mockReturnValue('1'),
 }
 
 describe('FormularioComponent', () => {
@@ -29,7 +33,7 @@ describe('FormularioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FormularioComponent,UserNotationPipe],
+      declarations: [FormularioComponent, HoverDirective, UserNotationPipe],
       imports: [ReactiveFormsModule],
       providers: [
         {provide: FormService, useValue: formServiceMock},

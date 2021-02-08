@@ -3,7 +3,7 @@
   <div class="email"><input type="email" formControlName="email" /></div>
 </form>
 
-<button (click)="setData()" hoverOpacityEffect>Salvar dados</button>
+<button (click)="setData()" hoverOpacityEffect [brightnessValue]='1.1'>Salvar dados</button>
 
 <div
   id="dados"
@@ -17,8 +17,8 @@
       <th>Email</th>
     </thead>
     <tbody *ngFor="let userData of data | async">
-      <tr class="row">
-        <td>{{ userData.user | userNotation }}</td>
+      <tr class="row" hoverOpacityEffect [brightnessValue]='.98'>
+        <td>{{ userData.user | userNotation}}</td>
         <td>{{ userData.email }}</td>
       </tr>
     </tbody>

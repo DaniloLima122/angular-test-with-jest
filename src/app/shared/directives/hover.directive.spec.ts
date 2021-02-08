@@ -1,20 +1,33 @@
 import { HoverDirective } from './hover.directive';
-import { TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { TestBed, ComponentFixture, ComponentFixtureAutoDetect } from '@angular/core/testing';
+import { Component, Renderer2, ElementRef, NO_ERRORS_SCHEMA, OnChanges, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 
 @Component({
-  template: "<button hoverOpacityEffect>Teste</button>"
+  template: "<button hoverOpacityEffect [brightnessValue]='1.1'>Teste</button>"
 })
-class FormMock{}
+class FormMock { }
 
 
 describe('HoverDirective', () => {
 
+  let element : ComponentFixture<FormMock>;
+  let elementoWithDirective: DebugElement;
+
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HoverDirective,FormMock]
+      declarations: [HoverDirective, FormMock],
+      providers: [
+        {
+          provide: ComponentFixtureAutoDetect, useValue: true
+        }
+      ]
     })
+
+    element = TestBed.createComponent(FormMock);
+    elementoWithDirective =  element.debugElement.query(By.directive(HoverDirective));
   })
 
   it('should create an instance', () => {
@@ -22,24 +35,21 @@ describe('HoverDirective', () => {
     // expect(directive).toBeTruthy();
   });
 
-  it('element should receive opacity on mousehover', () => {
-    const element = TestBed.createComponent(FormMock);
+  it('element should receive brightness config on mousehover', () => {
 
-    let elementoWithDirective : HTMLElement = element.debugElement.query(By.directive(HoverDirective)).nativeElement;
+    elementoWithDirective.nativeElement.dispatchEvent(new Event('mouseover'));
 
-    elementoWithDirective.dispatchEvent(new Event('mouseover'));
+    let buttonFilterOn = elementoWithDirective.nativeElement.style.filter;
 
-    expect(elementoWithDirective.style.opacity).toEqual("0.7");
+    expect(buttonFilterOn).toEqual("brightness(1.1)");
   })
 
   it('element should return to pattern opacity on mouseleave', () => {
 
-    const element = TestBed.createComponent(FormMock);
+    elementoWithDirective.nativeElement.dispatchEvent(new Event('mouseleave'));
 
-    let elementoWithDirective : HTMLElement = element.debugElement.query(By.directive(HoverDirective)).nativeElement;
+    let buttonFilterOff = elementoWithDirective.nativeElement.style.filter;
 
-    elementoWithDirective.dispatchEvent(new Event('mouseleave'));
-
-    expect(elementoWithDirective.style.opacity).toEqual("1");
+    expect(buttonFilterOff).toEqual("brightness(1)");
   })
 });

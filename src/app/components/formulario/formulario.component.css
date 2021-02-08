@@ -34,10 +34,6 @@ button{
   color: #aaa;
 }
 
-.container{
-}
-
-
 table{
   width: 100%;
   border-collapse: collapse;
@@ -63,14 +59,12 @@ td,th{
   padding: 10px 0;
 }
 
-.container header{
-}
-
 .row:nth-child(2n){
   background: #efefef;
 }
 
 
-tr:not(.row){
-  background: red;
+table .row{
+  background: #fff;
+  transition: .5s ease;
 }

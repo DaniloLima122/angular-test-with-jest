@@ -1,15 +1,21 @@
 
 import { AppComponent } from './app.component';
 import { TestBed } from '@angular/core/testing';
-import { FormularioComponent } from './components/formulario/formulario.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-formulario',
+  template: ''
+})
+class FormularioMock{}
 
 describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AppComponent, FormularioComponent],
-      imports: [ReactiveFormsModule]
+      declarations: [ AppComponent, FormularioMock],
+      imports: [ReactiveFormsModule],
     })
     .compileComponents();
 
