@@ -33,7 +33,6 @@ describe('FormularioComponent', () => {
       imports: [ReactiveFormsModule],
       providers: [
         {provide: FormService, useValue: formServiceMock},
-        // {provide: UserNotationPipe, useValue: pipe},
       ]
     }).compileComponents();
   });
