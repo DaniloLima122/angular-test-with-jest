@@ -1,0 +1,76 @@
+input,button{
+  width: 400px;
+  height: 40px;
+  margin: 10px 0;
+  outline-width: 0;
+  transition: .5s ease;
+}
+
+input{
+  border: 1px solid #DDD;
+  color: gray;
+  padding: 0 15px;
+}
+
+button{
+  background: rgb(0, 183, 255);
+  border: 0;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+#dados{
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.hasData{
+  color: gray;
+}
+
+.hasNoData{
+  color: #aaa;
+}
+
+.container{
+}
+
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  background: rgb(0, 183, 255);
+}
+
+table thead > th{
+  width: 50%;
+  color: #fff;
+}
+
+
+
+td,th{
+  padding: 10px;
+  text-align: center;
+}
+
+.container thead,.row{
+  padding: 10px 0;
+}
+
+.container header{
+}
+
+.row:nth-child(2n){
+  background: #efefef;
+}
+
+
+tr:not(.row){
+  background: red;
+}

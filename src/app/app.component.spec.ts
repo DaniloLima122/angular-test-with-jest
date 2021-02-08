@@ -1,31 +1,29 @@
-import { TestBed } from '@angular/core/testing';
+
 import { AppComponent } from './app.component';
+import { TestBed } from '@angular/core/testing';
+import { FormularioComponent } from './components/formulario/formulario.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+      declarations: [ AppComponent, FormularioComponent],
+      imports: [ReactiveFormsModule]
+    })
+    .compileComponents();
+
   });
 
   it('should create the app', () => {
+
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+
+    const component = fixture.componentInstance;
+
+    expect(component).toBeDefined();
+
   });
 
-  it(`should have as title 'testes-com-jest'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('testes-com-jest');
-  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('testes-com-jest app is running!');
-  });
 });

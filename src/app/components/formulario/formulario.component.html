@@ -1,0 +1,27 @@
+<form action="" [formGroup]="form">
+  <div class="name"><input type="text" formControlName="user" /></div>
+  <div class="email"><input type="email" formControlName="email" /></div>
+</form>
+
+<button (click)="setData()" hoverOpacityEffect>Salvar dados</button>
+
+<div
+  id="dados"
+  [className]="
+    (data | async) && (data | async)?.length ? 'hasData' : 'hasNoData'
+  "
+>
+  <table class="container" *ngIf="data | async">
+    <thead>
+      <th>Usuario</th>
+      <th>Email</th>
+    </thead>
+    <tbody *ngFor="let userData of data | async">
+      <tr class="row">
+        <td>{{ userData.user | userNotation }}</td>
+        <td>{{ userData.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <span *ngIf="!(data | async)">No Data</span>
+</div>
