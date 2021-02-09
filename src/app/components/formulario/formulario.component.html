@@ -1,9 +1,16 @@
-<form action="" [formGroup]="form">
-  <div class="name"><input type="text" formControlName="user" /></div>
-  <div class="email"><input type="email" formControlName="email" /></div>
+<form #formulario="ngForm" [formGroup]="form">
+  <div class="name">
+    <input type="text" formControlName="user" placeholder="Usuario"/>
+    <app-message-form *ngIf="form.get('user')?.errors?.required && (formulario.submitted || form.get('user')?.touched)" message="Campo Obrigatorio"></app-message-form>
+  </div>
+  <div class="email">
+    <input type="email" formControlName="email" placeholder="E-mail"/>
+    <app-message-form *ngIf="form.get('email')?.errors?.required && (formulario.submitted || form.get('email')?.touched)" message="Campo Obrigatorio"></app-message-form>
+    <app-message-form *ngIf="form.get('email')?.errors?.email && (formulario.submitted || form.get('email')?.touched)" message="E-mail inválido"></app-message-form>
+  </div>
+  <button (click)="setData()" hoverOpacityEffect [brightnessValue]='1.1'>Salvar dados</button>
 </form>
 
-<button (click)="setData()" hoverOpacityEffect [brightnessValue]='1.1'>Salvar dados</button>
 
 <div
   id="dados"
@@ -16,8 +23,8 @@
       <th>Usuario</th>
       <th>Email</th>
     </thead>
-    <tbody *ngFor="let userData of data | async">
-      <tr class="row" hoverOpacityEffect [brightnessValue]='.98'>
+    <tbody >
+      <tr *ngFor="let userData of data | async" class="row" hoverOpacityEffect [brightnessValue]='.98'>
         <td>{{ userData.user | userNotation}}</td>
         <td>{{ userData.email }}</td>
       </tr>

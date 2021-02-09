@@ -1,8 +1,7 @@
 import { HoverDirective } from './hover.directive';
 import { TestBed, ComponentFixture, ComponentFixtureAutoDetect } from '@angular/core/testing';
-import { Component, Renderer2, ElementRef, NO_ERRORS_SCHEMA, OnChanges, DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 
 @Component({
   template: "<button hoverOpacityEffect [brightnessValue]='1.1'>Teste</button>"

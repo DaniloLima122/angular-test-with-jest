@@ -1,9 +1,22 @@
 input,button{
   width: 400px;
   height: 40px;
-  margin: 10px 0;
   outline-width: 0;
   transition: .5s ease;
+}
+
+div.name, div.email,button{
+
+  margin: 10px 0;
+}
+
+form > div > *{
+  display: block;
+}
+
+
+app-message-form{
+  margin: 2px 0 10px;
 }
 
 input{
@@ -53,6 +66,7 @@ table thead > th{
 td,th{
   padding: 10px;
   text-align: center;
+  cursor: context-menu;
 }
 
 .container thead,.row{

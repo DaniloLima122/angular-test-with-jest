@@ -1,0 +1,10 @@
+.container app-formulario{
+  margin: 200px auto;
+  max-width: 500px;
+}
+
+.container{
+  display: grid;
+  justify-content: center;
+  min-height: 100vh;
+}
