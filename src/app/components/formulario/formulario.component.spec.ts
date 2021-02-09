@@ -15,45 +15,55 @@ const formServiceMock = {
   setDados: jest.fn(user => !!user)
 }
 
-class NotaionPipe{
-
-  transform(){}
-}
-
-const hoverDirective = {
-
-  opacityOn: jest.fn().mockReturnValue('1.1'),
-  opacityOff: jest.fn().mockReturnValue('1'),
-}
-
 describe('FormularioComponent', () => {
 
   let fixture: ComponentFixture<FormularioComponent>;
   let component: FormularioComponent;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  // Usando uma função para configurar o ambiente dos Testes dessa suite
+  const setUpTest = () => {
+
+    TestBed.configureTestingModule({
       declarations: [FormularioComponent, HoverDirective, UserNotationPipe],
       imports: [ReactiveFormsModule],
       providers: [
-        {provide: FormService, useValue: formServiceMock},
+        {provide: FormService, useValue: formServiceMock}
       ]
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(FormularioComponent);
     component = fixture.componentInstance;
-
     component.ngOnInit();
-  })
+  }
+
+  // Usando a função beforeEach para configurar o ambiente dos Testes dessa suite
+
+  // beforeEach(async () => {
+  //   await TestBed.configureTestingModule({
+  //     declarations: [FormularioComponent, HoverDirective, UserNotationPipe],
+  //     imports: [ReactiveFormsModule],
+  //     providers: [
+  //       {provide: FormService, useValue: formServiceMock},
+  //     ]
+  //   }).compileComponents();
+  // });
+
+  // beforeEach(() => {
+  //   fixture = TestBed.createComponent(FormularioComponent);
+  //   component = fixture.componentInstance;
+
+  //   component.ngOnInit();
+  // })
 
 
   it('should create', () => {
+    setUpTest();
     expect(component).toBeTruthy();
   });
 
   it("should invalidate form if fields are not  valid", () => {
+
+    setUpTest();
 
     component.form.setValue({ user: '', email: '' });
 
@@ -64,6 +74,8 @@ describe('FormularioComponent', () => {
 
   it("should invalidate form if email field are not valid", () => {
 
+    setUpTest();
+
     component.form.setValue({ user: '', email: 'dgmail.com' });
 
     const emailInvalid = component.form.get('email')?.invalid;
@@ -72,6 +84,8 @@ describe('FormularioComponent', () => {
   })
 
   it("data should be rendered", () => {
+
+    setUpTest();
 
     const dados: Observable<number> = formServiceMock.getDados()
 
@@ -88,6 +102,7 @@ describe('FormularioComponent', () => {
 
   it('shoud add a new user', () => {
 
+    setUpTest();
 
     let dados : UserData = {
 

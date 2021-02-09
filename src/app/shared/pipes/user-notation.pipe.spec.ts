@@ -1,6 +1,4 @@
 import { UserNotationPipe } from './user-notation.pipe';
-import { Pipe } from '@angular/core';
-
 
 let pipe : UserNotationPipe;
 
@@ -11,7 +9,7 @@ describe('UserNotationPipe', () => {
   });
 
   it('should transform user to use user notation', () => {
-    const user = "Danilo";
+    const user = "Dan@@@ilo";
 
     const userWithNotaion = pipe.transform(user);
 

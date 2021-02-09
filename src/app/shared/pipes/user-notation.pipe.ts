@@ -6,7 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class UserNotationPipe implements PipeTransform {
 
   transform(value: string): string {
-    return '@' + value.toLowerCase();
+
+    return '@' + value.toLowerCase().replace(/@/g,'');
   }
 
 }
