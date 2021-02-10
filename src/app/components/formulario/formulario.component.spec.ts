@@ -1,22 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { instance, mock, when, verify } from 'ts-mockito';
+import { instance, mock, when, verify, reset } from 'ts-mockito';
 
 import { FormularioComponent } from './formulario.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { from, Observable, of } from 'rxjs';
-import { toArray } from 'rxjs/operators';
-import { UserData } from 'src/app/userData';
+import { from } from 'rxjs';
 import { FormService } from 'src/app/service/form.service';
 import { UserNotationPipe } from 'src/app/shared/pipes/user-notation.pipe';
 import { HoverDirective } from 'src/app/shared/directives/hover.directive';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MessageFormComponent } from '../message-form/message-form.component';
-
-// class formServiceMock = {
-
-//   getDados: () => {},
-//   setDados : (user : UserData) => {}
-// }
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('FormularioComponent', () => {
 
@@ -115,7 +106,12 @@ describe('FormularioComponent', () => {
 
     let statusOnAddingNewUserSuccess = instance(mockedFormService).setDados(userTest);
 
+    component.form.setValue(userTest);
+
+    let formIsValid = component.form.valid;
+
     expect(statusOnAddingNewUserSuccess).toBeTruthy()
+    expect(formIsValid).toBeTruthy();
     verify(mockedFormService.setDados(userTest)).times(1);
 
   })

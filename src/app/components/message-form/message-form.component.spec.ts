@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, ComponentFixtureAutoDetect } from '@angular/core/testing';
-
-import { MessageFormComponent } from './message-form.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { MessageFormComponent } from './message-form.component';
+
 
 const formIsFilled = {
    fieldsFilled: jest.fn().mockReturnValue(false),
