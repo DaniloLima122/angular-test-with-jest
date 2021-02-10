@@ -1,12 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { FormService } from './service/form.service';
-import { HoverDirective } from './shared/directives/hover.directive';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
 import { FormularioModule } from './components/formulario/formulario.module';
-import { MessageFormComponent } from './components/message-form/message-form.component';
+import { FormService } from './service/form.service';
+
+
 
 @NgModule({
   declarations: [
