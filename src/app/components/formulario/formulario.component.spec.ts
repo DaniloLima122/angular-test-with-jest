@@ -1,13 +1,11 @@
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Pipe } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { instance, mock, when, verify, reset } from 'ts-mockito';
-
-import { FormularioComponent } from './formulario.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { from } from 'rxjs';
 import { FormService } from 'src/app/service/form.service';
-import { UserNotationPipe } from 'src/app/shared/pipes/user-notation.pipe';
-import { HoverDirective } from 'src/app/shared/directives/hover.directive';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { instance, mock, verify, when } from 'ts-mockito';
+import { FormularioComponent } from './formulario.component';
+
 
 describe('FormularioComponent', () => {
 
@@ -21,13 +19,17 @@ describe('FormularioComponent', () => {
   when(mockedFormService.getDados()).thenReturn(from([userTest]));
   when(mockedFormService.setDados(userTest)).thenReturn(!!userTest);
 
+  @Pipe({
+    name: 'userNotation'
+  })
+  class UserNotationPipeMock {}
   // Usando uma função para configurar o ambiente dos Testes dessa suite
   const setUpTest = () => {
 
     TestBed.configureTestingModule({
-      declarations: [FormularioComponent, HoverDirective, UserNotationPipe],
+      declarations: [FormularioComponent, UserNotationPipeMock],
       imports: [ReactiveFormsModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FormularioComponent);
@@ -60,7 +62,7 @@ describe('FormularioComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  test("should invalidate form if fields are not  valid", () => {
+  test("should invalidate form if fields are not valid", () => {
 
     setUpTest();
 
@@ -69,6 +71,7 @@ describe('FormularioComponent', () => {
     const formIsInvalid = component.form.invalid;
 
     expect(formIsInvalid).toBeTruthy();
+
   })
 
   test("should invalidate form if email field are not valid", () => {
@@ -93,6 +96,7 @@ describe('FormularioComponent', () => {
     dados.subscribe(uuserData => {
 
       divContent.innerHTML = uuserData.toString();
+
     })
 
     verify(mockedFormService.getDados()).once();
